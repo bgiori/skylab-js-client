@@ -36,6 +36,7 @@ export class SkylabClient {
         { id: this.userId },
       );
       const json = await response.json();
+      this.storage.clear();
       for (const flag of json) {
         this.storage.put(flag['key'], flag['value']);
       }
