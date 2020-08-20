@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es6", "dom"],
+    "module": "es6",
+    "noEmitOnError": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "target": "es5",
+    "noEmit": true
+  }
+}
