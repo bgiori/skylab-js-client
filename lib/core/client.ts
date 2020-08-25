@@ -24,6 +24,10 @@ export class SkylabClient {
     return this;
   }
 
+  public async init(): Promise<SkylabClient> {
+    return this.fetchAll();
+  }
+
   protected async fetchAll(): Promise<SkylabClient> {
     if (this.apiKey === null) {
       return this;

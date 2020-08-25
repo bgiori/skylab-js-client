@@ -6,6 +6,11 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "target": "es5",
-    "noEmit": true
+    "noEmit": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@core": ["lib/core"]
+    }
   }
 }

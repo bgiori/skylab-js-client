@@ -3,8 +3,9 @@
   "version": "0.1.1",
   "description": "Javascript SDK for Amplitude Skylab",
   "scripts": {
-    "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",
@@ -14,8 +15,7 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/browser",
-    "packages/node"
+    "packages/*"
   ],
   "bugs": {
     "url": "https://github.com/amplitude/skylab-js-sdk/issues"
@@ -38,6 +38,7 @@
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "lerna": "^3.22.1",
     "node-fetch": "^2.6.0",
     "prettier": "^2.0.5",
     "rollup": "^2.26.3",
