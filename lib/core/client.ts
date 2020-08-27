@@ -2,7 +2,7 @@ import { HttpClient } from './http';
 import { Storage } from './storage';
 
 const FALLBACK_VARIANT = 'false';
-const SERVER_URL = 'https://skylab.staging.amplitude.com';
+const SERVER_URL = 'https://skylab-api.staging.amplitude.com';
 
 export class SkylabClient {
   protected readonly apiKey: string;
@@ -34,7 +34,7 @@ export class SkylabClient {
     }
     try {
       const response = await this.httpClient.request(
-        `${this.serverUrl}/api/variants`,
+        `${this.serverUrl}/sdk/variants`,
         'POST',
         { 'Api-Key': this.apiKey },
         { id: this.userId },
