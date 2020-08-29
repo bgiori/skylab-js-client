@@ -41,8 +41,8 @@ export class SkylabClient {
       );
       const json = await response.json();
       this.storage.clear();
-      for (const flag of json) {
-        this.storage.put(flag['key'], flag['value']);
+      for (const flag of Object.keys(json)) {
+        this.storage.put(flag, json[flag]);
       }
     } catch (e) {
       console.error(e);
