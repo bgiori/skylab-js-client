@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/amplitude/skylab-js-sdk/issues"
   },
-  "homepage": "https://github.com/amplitude/skylab-js-sdk#readme"
+  "homepage": "https://github.com/amplitude/skylab-js-sdk#readme",
+  "dependencies": {
+    "base64-js": "^1.3.1"
+  }
 }

@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
 import tsConfig from './tsconfig.json';
 
@@ -16,6 +17,7 @@ const baseConfig = {
   external: ['http', 'https', 'querystring', 'url'],
   plugins: [
     resolve(),
+    commonjs(),
     typescript({
       include: tsConfig.include,
     }),

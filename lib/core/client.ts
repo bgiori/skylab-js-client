@@ -1,5 +1,6 @@
 import { HttpClient } from './http';
 import { Storage } from './storage';
+import { urlSafeBase64Encode } from 'lib/core/base64';
 
 const FALLBACK_VARIANT = 'false';
 const SERVER_URL = 'https://skylab-api.staging.amplitude.com';
@@ -33,11 +34,12 @@ export class SkylabClient {
       return this;
     }
     try {
+      const context = { id: this.userId };
+      const encodedContext = urlSafeBase64Encode(JSON.stringify(context));
       const response = await this.httpClient.request(
-        `${this.serverUrl}/sdk/variants`,
-        'POST',
+        `${this.serverUrl}/sdk/variants/${encodedContext}`,
+        'GET',
         { 'Api-Key': this.apiKey },
-        { id: this.userId },
       );
       const json = await response.json();
       this.storage.clear();
