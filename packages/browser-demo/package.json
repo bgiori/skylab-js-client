@@ -1,0 +1,34 @@
+{
+  "name": "browser-demo",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "homepage": "http://ahfarmer.github.io/emoji-search",
+  "devDependencies": {
+    "react-scripts": "^3.4.3"
+  },
+  "dependencies": {
+    "@amplitude-private/skylab-js-sdk": "0.1.6",
+    "clipboard": "^2.0.4",
+    "github-fork-ribbon-css": "^0.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
