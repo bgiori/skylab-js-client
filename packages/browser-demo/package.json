@@ -1,6 +1,6 @@
 {
   "name": "browser-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "private": true,
   "homepage": "http://ahfarmer.github.io/emoji-search",
@@ -8,7 +8,7 @@
     "react-scripts": "^3.4.3"
   },
   "dependencies": {
-    "@amplitude-private/skylab-js-sdk": "0.1.6",
+    "@amplitude-private/skylab-js-sdk": "^0.1.7",
     "clipboard": "^2.0.4",
     "github-fork-ribbon-css": "^0.2.1",
     "react": "^16.8.6",
