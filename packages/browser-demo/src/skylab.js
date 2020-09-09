@@ -1,6 +1,5 @@
-import { init } from "@amplitude-private/skylab-js-sdk";
+import { init } from '@amplitude-private/skylab-js-client';
 
-export const Skylab = init("sdk-DYRDKIFIsoJdA3cCDM2VMfq0YwIZpq4J");
+export const Skylab = init('sdk-DYRDKIFIsoJdA3cCDM2VMfq0YwIZpq4J');
 
-Skylab.identify("test-user");
-Skylab.fetchAll();
+Skylab.start({ id: 'test-user' });

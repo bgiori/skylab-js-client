@@ -5,27 +5,44 @@ import { urlSafeBase64Encode } from 'lib/core/base64';
 const FALLBACK_VARIANT = 'false';
 const SERVER_URL = 'https://skylab-api.staging.amplitude.com';
 
+export type SkylabContext = {
+  id: string;
+};
+
+export type SkylabConfig = {
+  serverUrl: string;
+};
+
 export class SkylabClient {
   protected readonly apiKey: string;
   protected readonly storage: Storage;
   protected readonly httpClient: HttpClient;
 
-  protected serverUrl = SERVER_URL;
-  protected userId: string;
+  protected serverUrl;
+  protected config;
+  protected context: SkylabContext;
 
-  public constructor(apiKey: string, httpClient: HttpClient, storage: Storage) {
+  public constructor(
+    apiKey: string,
+    config: SkylabConfig,
+    httpClient: HttpClient,
+    storage: Storage,
+  ) {
     this.apiKey = apiKey;
     this.storage = storage;
     this.httpClient = httpClient;
+    this.config = config;
+    this.serverUrl = config?.serverUrl || SERVER_URL;
   }
 
-  public identify(userId: string): SkylabClient {
-    this.userId = userId;
+  public setContext(context: SkylabContext): Promise<SkylabClient> {
+    this.context = context;
     this.storage.clear();
-    return this;
+    return this.fetchAll();
   }
 
-  public async init(): Promise<SkylabClient> {
+  public async start(context: SkylabContext): Promise<SkylabClient> {
+    this.context = context;
     return this.fetchAll();
   }
 
@@ -34,12 +51,12 @@ export class SkylabClient {
       return this;
     }
     try {
-      const context = { id: this.userId };
+      const context = this.context;
       const encodedContext = urlSafeBase64Encode(JSON.stringify(context));
       const response = await this.httpClient.request(
         `${this.serverUrl}/sdk/variants/${encodedContext}`,
         'GET',
-        { 'Api-Key': this.apiKey },
+        { Authorization: `Api-Key ${this.apiKey}` },
       );
       const json = await response.json();
       this.storage.clear();

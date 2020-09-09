@@ -2,8 +2,8 @@
 
 ## Overview
 
-This is the web browser SDK for Skylab, Amplitude's experimentation and feature
-management platform.
+This is the Javascript client (web browser) SDK for Skylab, Amplitude's
+experimentation and feature management platform.
 
 ## Browser Compatibility
 
@@ -17,11 +17,11 @@ example, [es6-promise](https://github.com/stefanpenner/es6-promise)).
 Install the SDK with npm:
 
 ```sh
-npm install --save @amplitude-private/skylab-js-sdk
+npm install --save @amplitude-private/skylab-js-client
 ```
 
 ```javascript
-import * as Skylab from '@amplitude-private/skylab-js-sdk';
+import * as Skylab from '@amplitude-private/skylab-js-client';
 
 const skylab = Skylab.init('sdk-DYRDKIFIsoJdA3cCDM2VMfq0YwIZpq4J');
 
