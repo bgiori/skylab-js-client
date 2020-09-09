@@ -1,4 +1,4 @@
-# Browser SDK for Skylab
+# Javascript Client (Browser) SDK for Skylab
 
 ## Overview
 

@@ -1,18 +1,6 @@
-Emoji Search
----
+# Javascript Client (Browser) SDK for Skylab Demo
 
-Created with *create-react-app*. See the [full create-react-app guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-
-
-Install
----
-
-`npm install`
-
-
-
-Usage
----
-
-`npm start`
+This is a demo of the Skylab Javascript client SDK using the example React app
+[Emoji Search](https://github.com/ahfarmer/emoji-search). See
+https://github.com/ahfarmer/emoji-search for the original source and more
+information.
