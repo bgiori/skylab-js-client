@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amplitude/skylab-js-sdk.git"
+    "url": "git+https://github.com/amplitude/skylab-js-client.git"
   },
   "author": "Amplitude",
   "license": "MIT",
@@ -19,9 +19,9 @@
     "packages/*"
   ],
   "bugs": {
-    "url": "https://github.com/amplitude/skylab-js-sdk/issues"
+    "url": "https://github.com/amplitude/skylab-js-client/issues"
   },
-  "homepage": "https://github.com/amplitude/skylab-js-sdk#readme",
+  "homepage": "https://github.com/amplitude/skylab-js-client#readme",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
