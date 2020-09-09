@@ -8,9 +8,6 @@
     "target": "es5",
     "noEmit": true,
     "rootDir": ".",
-    "baseUrl": ".",
-    "paths": {
-      "@core": ["lib/core"]
-    }
+    "baseUrl": "."
   }
 }

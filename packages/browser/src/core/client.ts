@@ -1,6 +1,6 @@
 import { HttpClient } from './http';
 import { Storage } from './storage';
-import { urlSafeBase64Encode } from 'lib/core/base64';
+import { urlSafeBase64Encode } from './base64';
 
 const FALLBACK_VARIANT = 'false';
 const SERVER_URL = 'https://skylab-api.staging.amplitude.com';

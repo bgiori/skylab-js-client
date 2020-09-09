@@ -1,4 +1,4 @@
-import { HttpClient } from '@core';
+import { HttpClient } from './core';
 import { fetch } from './fetch';
 
 export const request: HttpClient['request'] = (
