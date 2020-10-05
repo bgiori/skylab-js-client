@@ -1,11 +1,11 @@
 {
-  "version": "independent",
+  "version": "0.1.9",
   "packages": "packages/*",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
     "publish": {
-      "registry": "https://amplitude-358203115967.d.codeartifact.us-west-2.amazonaws.com/npm/amplitude-npm-private/"
+      "registry": "https://amplitude.jfrog.io/artifactory/api/npm/npm/"
     }
   }
 }
