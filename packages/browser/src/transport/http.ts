@@ -1,7 +1,10 @@
-import { HttpClient } from './core';
-import { fetch } from './fetch';
+import unfetch from 'unfetch';
 
-export const request: HttpClient['request'] = (
+import { HttpClient } from './interface';
+
+const fetch = window.fetch || unfetch;
+
+const request: HttpClient['request'] = (
   requestUrl: string,
   method: string,
   headers: Record<string, string>,
@@ -12,4 +15,8 @@ export const request: HttpClient['request'] = (
     headers,
     body: data && JSON.stringify(data),
   });
+};
+
+export const fetchHttpClient: HttpClient = {
+  request,
 };

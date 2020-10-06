@@ -1,8 +1,4 @@
-export interface Storage {
-  put(key: string, value: string): string;
-  get(key: string): string;
-  clear(): void;
-}
+import { Storage } from './interface';
 
 export class InMemoryStorage implements Storage {
   protected map: Record<string, string> = {};

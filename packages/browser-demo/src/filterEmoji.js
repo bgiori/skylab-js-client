@@ -1,5 +1,5 @@
-import emojiList from "./emojiList.json";
-import { Skylab } from "./skylab";
+import emojiList from './emojiList.json';
+import { Skylab } from './skylab';
 
 export default function filterEmoji(searchText, maxResults) {
   return emojiList
@@ -7,7 +7,7 @@ export default function filterEmoji(searchText, maxResults) {
       if (emoji.title.toLowerCase().includes(searchText.toLowerCase())) {
         return true;
       }
-      if (Skylab.getVariant("emoji-keyword-search") === "true") {
+      if (Skylab.getInstance().getVariant('emoji-keyword-search') === 'true') {
         if (emoji.keywords.includes(searchText)) {
           return true;
         }

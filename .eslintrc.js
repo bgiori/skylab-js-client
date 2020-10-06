@@ -9,7 +9,7 @@ module.exports = {
     node: true,
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -18,6 +18,12 @@ module.exports = {
   ],
   rules: {
     'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
+
+    // eslint-plugin-import
+    'import/order': [
+      'error',
+      { 'newlines-between': 'always', alphabetize: { order: 'asc' } },
+    ],
 
     // eslint-plugin-prettier
     'prettier/prettier': 'error',
