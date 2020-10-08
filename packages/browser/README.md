@@ -14,26 +14,4 @@ example, [es6-promise](https://github.com/stefanpenner/es6-promise)).
 
 ## Getting Started
 
-Install the SDK with npm:
-
-```sh
-npm install --save @amplitude-private/skylab-js-client
-```
-
-```javascript
-import * as Skylab from '@amplitude-private/skylab-js-client';
-
-const skylab = Skylab.init('sdk-DYRDKIFIsoJdA3cCDM2VMfq0YwIZpq4J');
-
-skylab.identify('user');
-skylab.init().then((client) => {
-  const variant = client.getVariant('flag-key');
-  if (variant === 'A') {
-    // variant A
-  } else if (variant === 'B') {
-    // variant B
-  } else {
-    // default
-  }
-});
-```
+Refer to the [Javascript SDK Documentation](https://amplitude-lab.readme.io/docs/install-the-javascript-sdk) to get started.
