@@ -2,7 +2,7 @@ import unfetch from 'unfetch';
 
 import { HttpClient } from './interface';
 
-const fetch = window.fetch || unfetch;
+const fetch = window?.fetch || unfetch;
 
 const request: HttpClient['request'] = (
   requestUrl: string,
