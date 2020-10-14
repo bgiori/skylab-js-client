@@ -1,7 +1,7 @@
 {
-  "name": "@amplitude-private/skylab-sdk-root",
+  "name": "@amplitude-private/skylab-js-client-root",
   "version": "0.1.1",
-  "description": "Javascript SDK for Amplitude Skylab",
+  "description": "Javascript Client SDK for Amplitude Skylab",
   "scripts": {
     "build": "lerna run build",
     "lint": "lerna run lint",
