@@ -1,30 +1,39 @@
-import React, { PureComponent } from "react";
-import Header from "./Header";
-import SearchInput from "./SearchInput";
-import EmojiResults from "./EmojiResults";
-import filterEmoji from "./filterEmoji";
+import './App.css';
+import React from 'react';
 
-export default class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filteredEmoji: filterEmoji("", 20)
-    };
-  }
+import { Skylab } from '@amplitude-private/skylab-js-client';
+import { useSkylab, SkylabProvider } from './skylab';
 
-  handleSearchChange = event => {
-    this.setState({
-      filteredEmoji: filterEmoji(event.target.value, 20)
-    });
-  };
+Skylab.init('client-IAxMYws9vVQESrrK88aTcToyqMxiiJoR');
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <SearchInput textChange={this.handleSearchChange} />
-        <EmojiResults emojiData={this.state.filteredEmoji} />
+const Feature = (props) => {
+  const { client, ready, loaded } = useSkylab();
+
+  const showFeature = client.getVariant('js-browser-demo') === 'true';
+  console.log(
+    `showFeature: ${showFeature}, ready: ${ready}, loaded: ${loaded}`,
+  );
+
+  return showFeature ? (
+    <footer className="footer">
+      <img src="/amplitude-logo.svg" alt="Flag enabled!" className="logo" />
+    </footer>
+  ) : null;
+};
+
+export default function App() {
+  return (
+    <SkylabProvider>
+      <div className="container">
+        <main className="main">
+          <h1 className="title">Browser demo for Skylab</h1>
+
+          <p className="description">
+            If you see an image below, the feature flag is enabled
+          </p>
+          <Feature />
+        </main>
       </div>
-    );
-  }
+    </SkylabProvider>
+  );
 }

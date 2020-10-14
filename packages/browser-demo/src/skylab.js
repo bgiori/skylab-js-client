@@ -1,15 +1,46 @@
-import {
-  Skylab,
-  AmplitudeIdentityProvider,
-} from '@amplitude-private/skylab-js-client';
-import Amplitude from 'amplitude-js';
-Amplitude.getInstance().init('a6dd847b9d2f03c816d4f3f8458cdc1d');
-Amplitude.getInstance().setUserId('test-user');
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { Skylab } from '@amplitude-private/skylab-js-client';
+import React, { createContext } from 'react';
 
-Skylab.init('client-IAxMYws9vVQESrrK88aTcToyqMxiiJoR');
-Skylab.getInstance().setIdentityProvider(
-  new AmplitudeIdentityProvider(Amplitude.getInstance()),
-);
-Skylab.getInstance().start();
+export const SkylabContext = createContext({
+  client: null,
+  ready: false,
+  loaded: false,
+});
 
-export { Skylab, Amplitude };
+export const useSkylab = () => {
+  return useContext(SkylabContext);
+};
+
+export const SkylabProvider = (props) => {
+  const { instanceName, skylabUser, children } = props;
+  const [ready, setReady] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  const startSkylab = useCallback(async () => {
+    Skylab.getInstance(instanceName)
+      .start(skylabUser)
+      .then(() => {
+        setLoaded(true);
+      });
+  }, [instanceName, skylabUser]);
+
+  useEffect(() => {
+    startSkylab();
+    setReady(true);
+  }, [startSkylab]);
+
+  return (
+    ready && (
+      <SkylabContext.Provider
+        value={{
+          client: Skylab.getInstance(),
+          ready: ready,
+          loaded: loaded,
+        }}
+      >
+        {children}
+      </SkylabContext.Provider>
+    )
+  );
+};
