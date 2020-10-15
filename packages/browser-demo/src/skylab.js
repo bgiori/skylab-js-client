@@ -26,6 +26,7 @@ export const SkylabProvider = (props) => {
   }, [instanceName, skylabUser]);
 
   useEffect(() => {
+    console.log('starting skylab');
     startSkylab();
     setReady(true);
   }, [startSkylab]);
@@ -34,7 +35,7 @@ export const SkylabProvider = (props) => {
     ready && (
       <SkylabContext.Provider
         value={{
-          client: Skylab.getInstance(),
+          client: Skylab.getInstance(instanceName),
           ready: ready,
           loaded: loaded,
         }}

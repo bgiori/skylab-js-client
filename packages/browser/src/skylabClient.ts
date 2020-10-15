@@ -48,6 +48,12 @@ export class SkylabClient {
     this.user = user || {};
     this.loadEnrollmentId();
     this.storage.load();
+    if (this.config?.initialFlags && this.config?.preferInitialFlags) {
+      // initial flags take precedent over local storage until flags are fetched
+      for (const [flagKey, value] of Object.entries(this.config.initialFlags)) {
+        this.storage.put(flagKey, value);
+      }
+    }
     return this.fetchAll();
   }
 
@@ -108,15 +114,24 @@ export class SkylabClient {
     return this;
   }
 
+  /**
+   * Returns the variant for the provided flagKey.
+   * Fallback order:
+   * - Provided fallback
+   * - Initial flags
+   * - fallbackVariant in config
+   * - Defaults.FALLBACK_VARIANT (empty string)
+   * Fallbacks happen if a value is null or undefined
+   */
   public getVariant(
     flagKey: string,
-    fallback: string = Defaults.FALLBACK_VARIANT,
+    fallback: string,
   ): string {
     if (this.apiKey === null) {
       return null;
     }
     let variant: string = this.storage.get(flagKey);
-    variant = variant || fallback;
+    variant = variant ?? fallback ?? this.config?.initialFlags?.[flagKey] ?? this.config?.fallbackVariant ?? Defaults.FALLBACK_VARIANT;
     return variant;
   }
 }
