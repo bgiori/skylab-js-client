@@ -30,7 +30,7 @@ export class LocalStorage implements Storage {
 
   load(): void {
     try {
-      this.map = JSON.parse(localStorage.getItem(this.namespace));
+      this.map = JSON.parse(localStorage.getItem(this.namespace)) || {};
     } catch (e) {
       this.map = {};
     }
