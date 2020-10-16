@@ -1,4 +1,4 @@
-import { IdentityProvider } from './provider';
+import { IdentityProvider } from '../types/identity';
 
 type AmplitudeInstance = {
   options?: AmplitudeOptions;

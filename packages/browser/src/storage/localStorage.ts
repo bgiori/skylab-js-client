@@ -1,4 +1,4 @@
-import { Storage } from './interface';
+import { Storage } from '../types/storage';
 
 export class LocalStorage implements Storage {
   protected readonly namespace: string;

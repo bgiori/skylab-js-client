@@ -1,4 +1,4 @@
-import { AmplitudeIdentityProvider } from './identity/amplitudeIdentityProvider';
-import { Skylab } from './skylab';
-
-export { Skylab, AmplitudeIdentityProvider };
+export { AmplitudeIdentityProvider } from './identity/amplitudeIdentityProvider';
+export { Skylab } from './factory';
+export { StubSkylabClient } from './stubClient';
+export { SkylabClient } from './skylabClient';

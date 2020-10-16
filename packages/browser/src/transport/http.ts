@@ -1,6 +1,6 @@
 import unfetch from 'unfetch';
 
-import { HttpClient } from './interface';
+import { HttpClient } from '../types/transport';
 
 const fetch = global.fetch || unfetch;
 

@@ -1,13 +1,14 @@
 import { SkylabConfig, Defaults } from './config';
-import { IdentityProvider } from './identity/provider';
-import { Storage } from './storage/interface';
+import { IdentityProvider } from './types/identity';
+import { Storage } from './types/storage';
 import { LocalStorage } from './storage/localStorage';
-import { HttpClient } from './transport/interface';
-import { SkylabUser } from './user';
+import { HttpClient } from './types/transport';
+import { Client } from './types/client';
+import { SkylabUser } from './types/user';
 import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
 
-export class SkylabClient {
+export class SkylabClient implements Client {
   protected readonly instanceName: string;
   protected readonly apiKey: string;
   protected readonly storage: Storage;
@@ -37,7 +38,7 @@ export class SkylabClient {
     this.storage = new LocalStorage(this.storageNamespace);
   }
 
-  public setContext(user: SkylabUser): Promise<SkylabClient> {
+  public async setContext(user: SkylabUser): Promise<SkylabClient> {
     this.user = user;
     this.storage.clear();
     this.storage.save();
