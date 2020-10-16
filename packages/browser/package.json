@@ -1,6 +1,6 @@
 {
   "name": "@amplitude-private/skylab-js-client",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Javascript Client SDK for Amplitude Skylab",
   "main": "dist/skylab.umd.js",
   "files": [
