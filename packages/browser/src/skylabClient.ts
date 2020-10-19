@@ -1,9 +1,9 @@
 import { SkylabConfig, Defaults } from './config';
+import { LocalStorage } from './storage/localStorage';
+import { Client } from './types/client';
 import { IdentityProvider } from './types/identity';
 import { Storage } from './types/storage';
-import { LocalStorage } from './storage/localStorage';
 import { HttpClient } from './types/transport';
-import { Client } from './types/client';
 import { SkylabUser } from './types/user';
 import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
@@ -38,7 +38,7 @@ export class SkylabClient implements Client {
     this.storage = new LocalStorage(this.storageNamespace);
   }
 
-  public async setContext(user: SkylabUser): Promise<SkylabClient> {
+  public async setUser(user: SkylabUser): Promise<SkylabClient> {
     this.user = user;
     this.storage.clear();
     this.storage.save();
@@ -124,15 +124,17 @@ export class SkylabClient implements Client {
    * - Defaults.FALLBACK_VARIANT (empty string)
    * Fallbacks happen if a value is null or undefined
    */
-  public getVariant(
-    flagKey: string,
-    fallback: string,
-  ): string {
+  public getVariant(flagKey: string, fallback: string): string {
     if (this.apiKey === null) {
       return null;
     }
     let variant: string = this.storage.get(flagKey);
-    variant = variant ?? fallback ?? this.config?.initialFlags?.[flagKey] ?? this.config?.fallbackVariant ?? Defaults.FALLBACK_VARIANT;
+    variant =
+      variant ??
+      fallback ??
+      this.config?.initialFlags?.[flagKey] ??
+      this.config?.fallbackVariant ??
+      Defaults.FALLBACK_VARIANT;
     return variant;
   }
 }
