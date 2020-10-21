@@ -17,6 +17,6 @@ const request: HttpClient['request'] = (
   });
 };
 
-export const fetchHttpClient: HttpClient = {
+export const FetchHttpClient: HttpClient = {
   request,
 };

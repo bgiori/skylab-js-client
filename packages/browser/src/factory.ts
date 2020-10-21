@@ -1,6 +1,5 @@
 import { Defaults, SkylabConfig } from './config';
 import { SkylabClient } from './skylabClient';
-import { fetchHttpClient } from './transport/http';
 import { normalizeInstanceName } from './util/normalize';
 
 const instances = {};
@@ -10,12 +9,7 @@ const init = (apiKey?: string, config?: SkylabConfig): SkylabClient => {
     config?.instanceName || Defaults.INSTANCE_NAME,
   );
   if (!instances[normalizedName]) {
-    instances[normalizedName] = new SkylabClient(
-      normalizedName,
-      apiKey,
-      config,
-      fetchHttpClient,
-    );
+    instances[normalizedName] = new SkylabClient(apiKey, config);
   }
   return instances[normalizedName];
 };

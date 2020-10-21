@@ -1,5 +1,6 @@
 import { SkylabConfig, Defaults } from './config';
 import { LocalStorage } from './storage/localStorage';
+import { FetchHttpClient } from './transport/http';
 import { Client } from './types/client';
 import { IdentityProvider } from './types/identity';
 import { Storage } from './types/storage';
@@ -7,6 +8,7 @@ import { HttpClient } from './types/transport';
 import { SkylabUser } from './types/user';
 import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
+import { normalizeInstanceName } from './util/normalize';
 
 export class SkylabClient implements Client {
   protected readonly instanceName: string;
@@ -22,15 +24,13 @@ export class SkylabClient implements Client {
   protected identityProvider: IdentityProvider;
   protected enrollmentId: string;
 
-  public constructor(
-    instanceName: string,
-    apiKey: string,
-    config: SkylabConfig,
-    httpClient: HttpClient,
-  ) {
-    this.instanceName = instanceName;
+  public constructor(apiKey: string, config: SkylabConfig) {
+    const normalizedInstanceName = normalizeInstanceName(
+      config?.instanceName || Defaults.INSTANCE_NAME,
+    );
+    this.instanceName = normalizedInstanceName;
     this.apiKey = apiKey;
-    this.httpClient = httpClient;
+    this.httpClient = FetchHttpClient;
     this.config = config;
     this.serverUrl = config?.serverUrl || Defaults.SERVER_URL;
     const shortApiKey = this.apiKey.substring(this.apiKey.length - 6);
