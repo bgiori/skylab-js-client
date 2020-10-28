@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module Client
+ */
+
 import { Defaults } from './config';
 import { Client } from './types/client';
 import { IdentityProvider } from './types/identity';

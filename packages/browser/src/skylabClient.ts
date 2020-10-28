@@ -1,3 +1,10 @@
+/**
+ * The default SkylabClient used to fetch variations from Skylab's servers.
+ * @packageDocumentation
+ * @module Client
+ * @preferred
+ */
+
 import { SkylabConfig, Defaults } from './config';
 import { LocalStorage } from './storage/localStorage';
 import { FetchHttpClient } from './transport/http';
@@ -24,6 +31,11 @@ export class SkylabClient implements Client {
   protected identityProvider: IdentityProvider;
   protected enrollmentId: string;
 
+  /**
+   * Creates a new SkylabClient instance.
+   * @param apiKey The Client key for the Skylab project
+   * @param config See {@link SkylabConfig} for config options
+   */
   public constructor(apiKey: string, config: SkylabConfig) {
     const normalizedInstanceName = normalizeInstanceName(
       config?.instanceName || Defaults.INSTANCE_NAME,
@@ -38,13 +50,19 @@ export class SkylabClient implements Client {
     this.storage = new LocalStorage(this.storageNamespace);
   }
 
-  public async setUser(user: SkylabUser): Promise<SkylabClient> {
-    this.user = user;
-    this.storage.clear();
-    this.storage.save();
-    return this.fetchAll();
-  }
-
+  /**
+   * Starts the client. This will
+   * 1. Load the id from local storage, or generate a new one if one does not exist.
+   * 2. Asynchronously fetch all variants with the provided user context.
+   * 3. Fall back on local storage (or initialFlags if `preferInitialFlags` is true) while the async
+   *    request for variants is continuing.
+   *
+   * If you are using the `initialFlags` config option to pre-load this SDK from the
+   * server, you do not need to call `start`.
+   *
+   * @param user The user context for variants. See {@link SkylabUser} for more details.
+   * @returns A promise that resolves when the async request for variants is complete.
+   */
   public async start(user: SkylabUser): Promise<SkylabClient> {
     this.user = user || {};
     this.loadEnrollmentId();
@@ -58,6 +76,25 @@ export class SkylabClient implements Client {
     return this.fetchAll();
   }
 
+  /**
+   * Sets the user context. This will reset the in memory variant
+   * assignments to the fallback until new variants are fetched.
+   * @param user The user context for variants. See {@link SkylabUser} for more details.
+   * @returns A promise that resolves when the async request for variants is complete.
+   */
+  public async setUser(user: SkylabUser): Promise<SkylabClient> {
+    this.user = user;
+    this.storage.clear();
+    this.storage.save();
+    return this.fetchAll();
+  }
+
+  /**
+   * Sets an identity provider that will inject identity information into the user
+   * context.
+   * See {@link IdentityProvider} for more details
+   * @param identityProvider
+   */
   public setIdentityProvider(identityProvider: IdentityProvider): SkylabClient {
     this.identityProvider = identityProvider;
     return this;
@@ -123,6 +160,8 @@ export class SkylabClient implements Client {
    * - fallbackVariant in config
    * - Defaults.FALLBACK_VARIANT (empty string)
    * Fallbacks happen if a value is null or undefined
+   * @param flagKey
+   * @param fallback A fallback value that takes precedence over any other fallback value.
    */
   public getVariant(flagKey: string, fallback: string): string {
     if (this.apiKey === null) {

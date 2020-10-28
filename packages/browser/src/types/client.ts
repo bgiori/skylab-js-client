@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module Client
+ */
+
 import { IdentityProvider } from './identity';
 import { SkylabUser } from './user';
 

@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module User
+ */
+
 export type SkylabUser = {
   id?: string;
   device_id?: string;

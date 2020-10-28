@@ -1,4 +1,17 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
+  "typedocOptions": {
+    "name": "Skylab JS Client Documentation",
+    "mode": "modules",
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "stripInternal": true,
+    "hideGenerator": true,
+    "out": "../../docs",
+    "includes": [
+      "./src"
+    ]
+  }
 }

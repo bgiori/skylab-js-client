@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @internal
+ */
+
 const base36Chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
 const ID_LENGTH = 25;

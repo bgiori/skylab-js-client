@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @internal
+ */
+
 import * as base64 from 'base64-js';
 
 const stringToUtf8Array = (s: string): Array<number> => {

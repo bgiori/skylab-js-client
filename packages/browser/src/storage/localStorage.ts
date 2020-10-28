@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @internal
+ */
+
 import { Storage } from '../types/storage';
 
 export class LocalStorage implements Storage {

@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @internal
+ */
+
 import unfetch from 'unfetch';
 
 import { HttpClient } from '../types/transport';

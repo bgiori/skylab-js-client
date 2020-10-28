@@ -1,41 +1,39 @@
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
-import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
-import pkg from './package.json';
+
 import tsConfig from './tsconfig.json';
 
-const baseConfig = {
+const browserConfig = {
   input: 'src/index.ts',
   output: {
-    name: 'skylab',
+    dir: 'dist',
+    entryFileNames: 'skylab.umd.js',
+    exports: 'named',
+    format: 'umd',
+    name: 'Skylab',
   },
   treeshake: {
     moduleSideEffects: 'no-external',
   },
   external: ['http', 'https', 'querystring', 'url'],
   plugins: [
+    replace({ BUILD_BROWSER: true }),
     resolve(),
     commonjs(),
     typescript({
+      declaration: true,
+      declarationDir: 'dist/types',
       include: tsConfig.include,
+      rootDir: 'src',
     }),
     babel({
       babelHelpers: 'bundled',
       exclude: ['node_modules/**'],
     }),
   ],
-};
-
-const browserConfig = {
-  ...baseConfig,
-  plugins: [replace({ BUILD_BROWSER: true }), ...baseConfig.plugins],
-  output: {
-    ...baseConfig.output,
-    file: pkg.main,
-    format: 'umd',
-  },
 };
 
 const configs = [browserConfig];

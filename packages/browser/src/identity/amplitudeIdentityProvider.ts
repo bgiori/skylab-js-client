@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module Identity
+ */
+
 import { IdentityProvider } from '../types/identity';
 
 type AmplitudeInstance = {
