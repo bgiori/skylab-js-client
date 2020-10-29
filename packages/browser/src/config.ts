@@ -30,6 +30,10 @@ export type SkylabConfig = {
    * Currently this flag is unused but is reserved for future use.
    */
   isServerSide?: boolean;
+  /**
+   * Set to true to log some extra information to the console.
+   */
+  debug?: boolean;
 };
 
 export const Defaults = {
