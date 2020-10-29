@@ -47,6 +47,7 @@
     "tslib": "^2.0.1",
     "typedoc": "^0.19.2",
     "typedoc-plugin-external-module-name": "^4.0.3",
+    "typedoc-plugin-remove-references": "^0.0.5",
     "typescript": "^3.9.7"
   }
 }

@@ -1,9 +1,6 @@
 /**
- * This package contains the IdentityProvider interface and some implementations
- *
  * @packageDocumentation
- * @preferred
- * @module Identity
+ * @module skylab-js-client
  */
 
 /**

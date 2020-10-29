@@ -2,10 +2,10 @@
  * A SkylabUser object represents an individual end user, and is passed
  * to the server for variation assignment (enrollment).
  * @packageDocumentation
- * @module User
+ * @module skylab-js-client
  */
 
-export type SkylabUser = {
+export interface SkylabUser {
   /**
    * The id used for enrollment
    */
@@ -58,4 +58,4 @@ export type SkylabUser = {
     string,
     string | number | boolean | Array<string | number | boolean>
   >;
-};
+}

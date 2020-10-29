@@ -1,9 +1,9 @@
 /**
  * @packageDocumentation
- * @module Config
+ * @module skylab-js-client
  */
 
-export type SkylabConfig = {
+export interface SkylabConfig {
   /**
    * Set to true to log some extra information to the console.
    */
@@ -40,7 +40,7 @@ export type SkylabConfig = {
    * The server endpoint from which to request variants.
    */
   serverUrl?: string;
-};
+}
 
 export const Defaults = {
   FALLBACK_VARIANT: '',

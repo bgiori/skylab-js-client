@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module Identity
+ * @module skylab-js-client
  */
 
 import { IdentityProvider } from '../types/identity';

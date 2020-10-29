@@ -1,8 +1,6 @@
 /**
- * This module provide factory methods for storing singleton instances of
- * {@link SkylabClient}
  * @packageDocumentation
- * @module Skylab
+ * @module skylab-js-client
  */
 
 import { Defaults, SkylabConfig } from './config';
@@ -11,6 +9,9 @@ import { normalizeInstanceName } from './util/normalize';
 
 const instances = {};
 
+/**
+ * Provides factory methods for storing singleton instances of {@link SkylabClient}
+ */
 export const Skylab = {
   /**
    * Initializes a {@link SkylabClient} instance and stores it as a singleton

@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module Client
+ * @module skylab-js-client
  */
 
 import { Defaults } from './config';

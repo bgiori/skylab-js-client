@@ -4,9 +4,12 @@
   "typedocOptions": {
     "name": "Skylab JS Client Documentation",
     "mode": "modules",
+    "entryPoint": "skylab-js-client",
     "excludeNotExported": true,
     "excludePrivate": true,
     "excludeProtected": true,
+    "includeVersion": true,
+    "readme": "none",
     "stripInternal": true,
     "hideGenerator": true,
     "out": "../../docs",
