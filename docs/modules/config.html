@@ -88,15 +88,23 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
 					<a name="skylabconfig" class="tsd-anchor"></a>
 					<h3>Skylab<wbr>Config</h3>
-					<div class="tsd-signature tsd-kind-icon">Skylab<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>fallbackVariant<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>initialFlags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">; </span>instanceName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isServerSide<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>preferInitialFlags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>serverUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">Skylab<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>debug<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>fallbackVariant<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>initialFlags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">; </span>instanceName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isServerSide<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>preferInitialFlags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>serverUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/4a085e3/packages/browser/src/config.ts#L6">packages/browser/src/config.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/ea18223/packages/browser/src/config.ts#L6">packages/browser/src/config.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> debug<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Set to true to log some extra information to the console.</p>
+									</div>
+								</div>
+							</li>
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> fallback<wbr>Variant<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
@@ -164,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">Defaults<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/4a085e3/packages/browser/src/config.ts#L35">packages/browser/src/config.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/ea18223/packages/browser/src/config.ts#L45">packages/browser/src/config.ts:45</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -173,7 +181,7 @@
 						<div class="tsd-signature tsd-kind-icon">FALLBACK_<wbr>VARIANT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/4a085e3/packages/browser/src/config.ts#L37">packages/browser/src/config.ts:37</a></li>
+								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/ea18223/packages/browser/src/config.ts#L46">packages/browser/src/config.ts:46</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -183,7 +191,7 @@
 						<div class="tsd-signature tsd-kind-icon">INSTANCE_<wbr>NAME<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;$default_instance&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/4a085e3/packages/browser/src/config.ts#L36">packages/browser/src/config.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/ea18223/packages/browser/src/config.ts#L47">packages/browser/src/config.ts:47</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -193,7 +201,7 @@
 						<div class="tsd-signature tsd-kind-icon">METADATA_<wbr>STORAGE_<wbr>KEY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;amp-sl-meta&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/4a085e3/packages/browser/src/config.ts#L39">packages/browser/src/config.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/ea18223/packages/browser/src/config.ts#L48">packages/browser/src/config.ts:48</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -203,7 +211,7 @@
 						<div class="tsd-signature tsd-kind-icon">SERVER_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;https://api.lab.amplitude.com&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/4a085e3/packages/browser/src/config.ts#L38">packages/browser/src/config.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/amplitude/skylab-js-client/blob/ea18223/packages/browser/src/config.ts#L49">packages/browser/src/config.ts:49</a></li>
 							</ul>
 						</aside>
 					</section>
