@@ -7,6 +7,7 @@ import { useSkylab, SkylabProvider } from './skylab';
 Skylab.init('client-IAxMYws9vVQESrrK88aTcToyqMxiiJoR', {
   initialFlags: { 'js-browser-demo': 'initial' },
   preferInitialFlags: true,
+  debug: true,
 });
 
 const Feature = (props) => {

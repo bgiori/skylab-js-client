@@ -23,6 +23,7 @@ export class SkylabClient implements Client {
   protected readonly storage: Storage;
   protected readonly storageNamespace: string;
   protected readonly httpClient: HttpClient;
+  protected readonly debug: boolean;
 
   protected serverUrl: string;
   protected config: SkylabConfig;
@@ -48,6 +49,7 @@ export class SkylabClient implements Client {
     const shortApiKey = this.apiKey.substring(this.apiKey.length - 6);
     this.storageNamespace = `amp-sl-${shortApiKey}`;
     this.storage = new LocalStorage(this.storageNamespace);
+    this.debug = config?.debug;
   }
 
   /**
@@ -146,6 +148,10 @@ export class SkylabClient implements Client {
         this.storage.put(flag, json[flag]);
       }
       this.storage.save();
+
+      if (this.debug) {
+        console.debug('[Skylab] Received and stored flags:', json);
+      }
     } catch (e) {
       console.error(e);
     }
@@ -174,6 +180,11 @@ export class SkylabClient implements Client {
       this.config?.initialFlags?.[flagKey] ??
       this.config?.fallbackVariant ??
       Defaults.FALLBACK_VARIANT;
+
+    if (this.debug) {
+      console.debug(`[Skylab] variant for flag ${flagKey} is ${variant}`);
+    }
+
     return variant;
   }
 }
