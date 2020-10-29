@@ -8,6 +8,9 @@ import { Client } from './types/client';
 import { IdentityProvider } from './types/identity';
 import { SkylabUser } from './types/user';
 
+/**
+ * A stub {@link Client} implementation that does nothing for all methods
+ */
 export class StubSkylabClient implements Client {
   public async setUser(user: SkylabUser): Promise<StubSkylabClient> {
     return this;

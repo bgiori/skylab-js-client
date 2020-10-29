@@ -1,5 +1,4 @@
 /**
- * The default SkylabClient used to fetch variations from Skylab's servers.
  * @packageDocumentation
  * @module Client
  * @preferred
@@ -17,6 +16,9 @@ import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
 import { normalizeInstanceName } from './util/normalize';
 
+/**
+ * The default {@link Client} used to fetch variations from Skylab's servers.
+ */
 export class SkylabClient implements Client {
   protected readonly instanceName: string;
   protected readonly apiKey: string;
@@ -93,7 +95,8 @@ export class SkylabClient implements Client {
 
   /**
    * Sets an identity provider that will inject identity information into the user
-   * context.
+   * context. The identity provider will override any device ID or user ID set on
+   * the SkylabUser object.
    * See {@link IdentityProvider} for more details
    * @param identityProvider
    */
