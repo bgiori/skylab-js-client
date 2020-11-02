@@ -10,6 +10,11 @@ export interface SkylabConfig {
   debug?: boolean;
 
   /**
+   * Set to true to view enrollment requests in the UI debugger
+   */
+  debugEnrollmentRequests?: boolean;
+
+  /**
    * The default fallback variant for all {@link SkylabClient.getVariant} calls.
    */
   fallbackVariant?: string;

@@ -14,6 +14,7 @@ import { SkylabUser } from './types/user';
 import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
 import { normalizeInstanceName } from './util/normalize';
+import { randomString } from './util/randomstring';
 
 /**
  * The default {@link Client} used to fetch variations from Skylab's servers.
@@ -25,6 +26,7 @@ export class SkylabClient implements Client {
   protected readonly storageNamespace: string;
   protected readonly httpClient: HttpClient;
   protected readonly debug: boolean;
+  protected readonly debugEnrollmentRequests: boolean;
 
   protected serverUrl: string;
   protected config: SkylabConfig;
@@ -51,6 +53,7 @@ export class SkylabClient implements Client {
     this.storageNamespace = `amp-sl-${shortApiKey}`;
     this.storage = new LocalStorage(this.storageNamespace);
     this.debug = config?.debug;
+    this.debugEnrollmentRequests = config?.debugEnrollmentRequests;
   }
 
   /**
@@ -139,8 +142,16 @@ export class SkylabClient implements Client {
         userContext.user_id = this.identityProvider.getUserId();
       }
       const encodedContext = urlSafeBase64Encode(JSON.stringify(userContext));
+      let queryString = '';
+      let debugEnrollmentRequestsParam;
+      if (this.debugEnrollmentRequests) {
+        debugEnrollmentRequestsParam = `d=${randomString(8)}`;
+      }
+      if (debugEnrollmentRequestsParam) {
+        queryString = '?' + debugEnrollmentRequestsParam;
+      }
       const response = await this.httpClient.request(
-        `${this.serverUrl}/sdk/variants/${encodedContext}`,
+        `${this.serverUrl}/sdk/variants/${encodedContext}${queryString}`,
         'GET',
         { Authorization: `Api-Key ${this.apiKey}` },
       );
