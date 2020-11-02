@@ -1,12 +1,17 @@
-# Javascript Client SDKs for Skylab
+# Javascript Client (Browser) SDK for Skylab
 
 ## Overview
 
-This is the repo for client-side Javascript based SDKs for Skylab, Amplitude's experimentation and feature
-management platform. At the moment, Skylab supports just the browser environment.
+This is the Javascript client (web browser) SDK for Skylab, Amplitude's
+experimentation and feature management platform.
+
+## Browser Compatibility
+
+This SDK works with all major browsers and IE10+. The SDK does make use of
+Promises, so if you are targeting a browser that does not have native support
+for Promise (for example, IE), you should include a polyfill for Promise, (for
+example, [es6-promise](https://github.com/stefanpenner/es6-promise)).
 
 ## Getting Started
 
-Please see the package documentation for getting started with each SDK:
-
-- [Browser](packages/browser/README.md)
+Refer to the [Javascript SDK Documentation](https://amplitude-lab.readme.io/docs/install-the-javascript-sdk) to get started.
