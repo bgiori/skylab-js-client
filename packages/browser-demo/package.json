@@ -3,7 +3,7 @@
   "version": "0.1.21",
   "private": true,
   "dependencies": {
-    "@amplitude-private/skylab-js-client": "^0.1.21",
+    "@amplitude/skylab-js-client": "^0.1.21",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

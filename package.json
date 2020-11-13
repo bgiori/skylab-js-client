@@ -1,5 +1,5 @@
 {
-  "name": "@amplitude-private/skylab-js-client-root",
+  "name": "@amplitude/skylab-js-client-root",
   "version": "0.1.1",
   "description": "Javascript Client SDK for Amplitude Skylab",
   "scripts": {

@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 
-import { Skylab } from '@amplitude-private/skylab-js-client';
+import { Skylab } from '@amplitude/skylab-js-client';
 import { useSkylab, SkylabProvider } from './skylab';
 
 Skylab.init('client-IAxMYws9vVQESrrK88aTcToyqMxiiJoR', {

@@ -1,5 +1,5 @@
 {
-  "name": "@amplitude-private/skylab-js-client",
+  "name": "@amplitude/skylab-js-client",
   "version": "0.1.21",
   "description": "Javascript Client SDK for Amplitude Skylab",
   "main": "dist/skylab.umd.js",
@@ -12,7 +12,7 @@
     "docs": "typedoc",
     "lint": "eslint . --ignore-path ../../.eslintignore",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "yarn build && yarn docs"
+    "prepublish": "yarn build"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,6 @@
   "author": "Amplitude",
   "license": "MIT",
   "private": false,
-  "publishConfig": {
-    "registry": "https://amplitude-358203115967.d.codeartifact.us-west-2.amazonaws.com/npm/amplitude-npm-private/",
-    "access": "restricted"
-  },
   "bugs": {
     "url": "https://github.com/amplitude/skylab-js-client/issues"
   },

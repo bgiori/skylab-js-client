@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { Skylab } from '@amplitude-private/skylab-js-client';
+import { Skylab } from '@amplitude/skylab-js-client';
 import React, { createContext } from 'react';
 
 export const SkylabContext = createContext({
