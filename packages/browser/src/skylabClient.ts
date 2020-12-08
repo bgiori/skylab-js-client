@@ -11,6 +11,7 @@ import { IdentityProvider } from './types/identity';
 import { Storage } from './types/storage';
 import { HttpClient } from './types/transport';
 import { SkylabUser } from './types/user';
+import { Variant } from './types/variant';
 import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
 import { normalizeInstanceName } from './util/normalize';
@@ -76,7 +77,7 @@ export class SkylabClient implements Client {
     if (this.config?.initialFlags && this.config?.preferInitialFlags) {
       // initial flags take precedent over local storage until flags are fetched
       for (const [flagKey, value] of Object.entries(this.config.initialFlags)) {
-        this.storage.put(flagKey, value);
+        this.storage.put(flagKey, this._convertVariant(value));
       }
     }
     return this.fetchAll();
@@ -152,7 +153,7 @@ export class SkylabClient implements Client {
         queryString = '?' + debugEnrollmentRequestsParam;
       }
       const response = await this.httpClient.request(
-        `${this.serverUrl}/sdk/variants/${encodedContext}${queryString}`,
+        `${this.serverUrl}/sdk/vardata/${encodedContext}${queryString}`,
         'GET',
         { Authorization: `Api-Key ${this.apiKey}` },
       );
@@ -187,11 +188,11 @@ export class SkylabClient implements Client {
     if (this.apiKey === null) {
       return null;
     }
-    let variant: string = this.storage.get(flagKey);
+    let variant: string = this.storage.get(flagKey)?.key;
     variant =
       variant ??
       fallback ??
-      this.config?.initialFlags?.[flagKey] ??
+      this._convertVariant(this.config?.initialFlags?.[flagKey])?.key ??
       this.config?.fallbackVariant ??
       Defaults.FALLBACK_VARIANT;
 
@@ -200,5 +201,35 @@ export class SkylabClient implements Client {
     }
 
     return variant;
+  }
+
+  public getVariantData(flagKey: string, fallback: any): any {
+    if (this.apiKey === null) {
+      return null;
+    }
+    let data: any = this.storage.get(flagKey)?.payload;
+    data =
+      data ??
+      fallback ??
+      this._convertVariant(this.config?.initialFlags?.[flagKey])?.payload;
+
+    if (this.debug) {
+      console.debug(`[Skylab] variant data for flag ${flagKey} is ${data}`);
+    }
+
+    return data;
+  }
+
+  public _convertVariant(value: string | Variant): Variant | null {
+    if (value === null || value === undefined) {
+      return null;
+    }
+    if (typeof value == 'string') {
+      return {
+        key: value,
+      };
+    } else {
+      return value;
+    }
   }
 }

@@ -3,6 +3,8 @@
  * @module skylab-js-client
  */
 
+import { Variant } from './types/variant';
+
 export interface SkylabConfig {
   /**
    * Set to true to log some extra information to the console.
@@ -23,7 +25,7 @@ export interface SkylabConfig {
    * Initial variant values for flags. This is useful for bootstrapping the client with
    * values determined on the server.
    */
-  initialFlags?: { [flagKey: string]: string };
+  initialFlags?: { [flagKey: string]: string | Variant };
 
   /**
    * The instance name for the SkylabClient. Instance names are case _insensitive_.
