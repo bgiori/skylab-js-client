@@ -41,7 +41,7 @@ export interface SkylabConfig {
   /**
    * Whether to prioritize initialFlags over localStorage while async requests for variants are still in flight.
    */
-  preferInitialFlags: boolean;
+  preferInitialFlags?: boolean;
 
   /**
    * The server endpoint from which to request variants.
