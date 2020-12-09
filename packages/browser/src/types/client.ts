@@ -11,5 +11,6 @@ export interface Client {
   setUser(user: SkylabUser): Promise<Client>;
   getVariant(flagKey: string, fallback: string): string;
   getVariantData(flagKey: string, fallback: any): any;
+  getAllVariants(): Record<string, Variant>;
   setIdentityProvider(identityProvider: IdentityProvider): Client;
 }

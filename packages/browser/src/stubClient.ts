@@ -33,4 +33,8 @@ export class StubSkylabClient implements Client {
   public getVariantData(flagKey: string, fallback: string): any {
     return null;
   }
+
+  public getAllVariants(): Record<String, Variant> {
+    return null;
+  }
 }
