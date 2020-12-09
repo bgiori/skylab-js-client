@@ -7,6 +7,7 @@ import { Defaults } from './config';
 import { Client } from './types/client';
 import { IdentityProvider } from './types/identity';
 import { SkylabUser } from './types/user';
+import { Variant } from './types/variant';
 
 /**
  * A stub {@link Client} implementation that does nothing for all methods
@@ -34,7 +35,7 @@ export class StubSkylabClient implements Client {
     return null;
   }
 
-  public getAllVariants(): Record<String, Variant> {
+  public getAllVariants(): Record<string, Variant> {
     return null;
   }
 }

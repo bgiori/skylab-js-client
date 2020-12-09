@@ -5,6 +5,7 @@
 
 import { IdentityProvider } from './identity';
 import { SkylabUser } from './user';
+import { Variant } from './variant';
 
 export interface Client {
   start(user: SkylabUser): Promise<Client>;
