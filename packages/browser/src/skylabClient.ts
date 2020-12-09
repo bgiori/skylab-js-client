@@ -220,6 +220,16 @@ export class SkylabClient implements Client {
     return data;
   }
 
+  /**
+   * Returns all variants for the user
+   */
+  public getAllVariants(): Record<string, Variant> {
+    if (this.apiKey === null) {
+      return null;
+    }
+    return this.storage.getAll();
+  }
+
   public _convertVariant(value: string | Variant): Variant | null {
     if (value === null || value === undefined) {
       return null;
