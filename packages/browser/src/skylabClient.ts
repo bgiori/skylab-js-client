@@ -84,15 +84,13 @@ export class SkylabClient implements Client {
   }
 
   /**
-   * Sets the user context. This will reset the in memory variant
-   * assignments to the fallback until new variants are fetched.
+   * Sets the user context. Skylab will continue to serve variation assignments
+   * from the old user context until new variants are fetched.
    * @param user The user context for variants. See {@link SkylabUser} for more details.
    * @returns A promise that resolves when the async request for variants is complete.
    */
   public async setUser(user: SkylabUser): Promise<SkylabClient> {
     this.user = user;
-    this.storage.clear();
-    this.storage.save();
     return this.fetchAll();
   }
 
