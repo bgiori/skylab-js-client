@@ -1,9 +1,9 @@
 {
   "name": "browser-demo",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "private": true,
   "dependencies": {
-    "@amplitude/skylab-js-client": "^0.1.26",
+    "@amplitude/skylab-js-client": "^0.1.27",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
