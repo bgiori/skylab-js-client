@@ -44,7 +44,7 @@ const Feature = (props) => {
 
 export default function App() {
   return (
-    <SkylabProvider user={{ user_id: 'user_id' }}>
+    <SkylabProvider user={{ user_id: 'user_id', device_family: 'device_family' }}>
       <div className="container">
         <main className="main">
           <h1 className="title">Browser demo for Skylab</h1>

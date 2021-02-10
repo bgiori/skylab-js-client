@@ -7,11 +7,6 @@
 
 export interface SkylabUser {
   /**
-   * The id used for enrollment
-   */
-  id?: string;
-
-  /**
    * Device ID for associating with an identity in Amplitude
    */
   device_id?: string;
@@ -24,7 +19,12 @@ export interface SkylabUser {
   /**
    * Predefined field, must be manually provided
    */
-  version?: string;
+  deviceFamily?: string;
+
+  /**
+   * Predefined field, must be manually provided
+   */
+  deviceType?: string;
 
   /**
    * Predefined field, must be manually provided
@@ -50,6 +50,11 @@ export interface SkylabUser {
    * Predefined field, must be manually provided
    */
   platform?: string;
+
+  /**
+   * Predefined field, must be manually provided
+   */
+  version?: string;
 
   /**
    * Custom user properties, used for rule base targeting
