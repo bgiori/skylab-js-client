@@ -19,12 +19,12 @@ export interface SkylabUser {
   /**
    * Predefined field, must be manually provided
    */
-  deviceFamily?: string;
+  device_family?: string;
 
   /**
    * Predefined field, must be manually provided
    */
-  deviceType?: string;
+  device_type?: string;
 
   /**
    * Predefined field, must be manually provided
