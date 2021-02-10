@@ -131,12 +131,8 @@ export class SkylabClient implements Client {
       const userContext = {
         ...user,
       };
-      if (!userContext.id) {
-        userContext.id = this.enrollmentId;
-      }
       if (this.identityProvider?.getDeviceId()) {
         userContext.device_id = this.identityProvider.getDeviceId();
-        userContext.id = userContext.device_id;
       }
       if (this.identityProvider?.getUserId()) {
         userContext.user_id = this.identityProvider.getUserId();
