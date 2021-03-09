@@ -178,7 +178,7 @@ export class SkylabClient implements Client {
    * @param flagKey
    * @param fallback A fallback value that takes precedence over any other fallback value.
    */
-  public getVariant(flagKey: string, fallback: string): string {
+  public getVariant(flagKey: string, fallback?: string): string {
     if (this.apiKey === null) {
       return null;
     }
