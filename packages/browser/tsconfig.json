@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["**/*.ts"],
+  "include": ["src/**/*.ts", "package.json"],
   "typedocOptions": {
     "name": "Skylab JS Client Documentation",
     "entryPoints": [
