@@ -5,9 +5,9 @@
 
 import { Defaults } from './config';
 import { Client } from './types/client';
-import { IdentityProvider } from './types/identity';
+import { ContextProvider } from './types/context';
 import { SkylabUser } from './types/user';
-import { Variant } from './types/variant';
+import { Variant, Variants } from './types/variant';
 
 /**
  * A stub {@link Client} implementation that does nothing for all methods
@@ -21,21 +21,17 @@ export class StubSkylabClient implements Client {
     return this;
   }
 
-  public setIdentityProvider(
-    identityProvider: IdentityProvider,
+  public setContextProvider(
+    contextProvider: ContextProvider,
   ): StubSkylabClient {
     return this;
   }
 
-  public getVariant(flagKey: string, fallback?: string): string {
-    return Defaults.FALLBACK_VARIANT;
+  public getVariant(flagKey: string, fallback?: string | Variant): Variant {
+    return { value: Defaults.fallbackVariant };
   }
 
-  public getVariantData(flagKey: string, fallback: string): any {
-    return null;
-  }
-
-  public getAllVariants(): Record<string, Variant> {
-    return null;
+  public getVariants(): Variants {
+    return {};
   }
 }

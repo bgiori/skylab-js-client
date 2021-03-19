@@ -1,4 +1,4 @@
-import { Variant } from './variant';
+import { Variant, Variants } from './variant';
 
 /**
  * @packageDocumentation
@@ -8,7 +8,7 @@ export interface Storage {
   put(key: string, value: Variant): Variant;
   get(key: string): Variant;
   clear(): void;
-  getAll(): Record<string, Variant>;
+  getAll(): Variants;
   save();
   load();
 }

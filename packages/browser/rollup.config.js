@@ -1,5 +1,6 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
@@ -22,12 +23,13 @@ const browserConfig = {
   plugins: [
     replace({ BUILD_BROWSER: true }),
     resolve(),
+    json(),
     commonjs(),
     typescript({
       declaration: true,
       declarationDir: 'dist/types',
       include: tsConfig.include,
-      rootDir: 'src',
+      rootDir: '.',
     }),
     babel({
       babelHelpers: 'bundled',

@@ -47,11 +47,20 @@ export interface SkylabConfig {
    * The server endpoint from which to request variants.
    */
   serverUrl?: string;
+
+  /**
+   * The local storage key to use for storing metadata
+   */
+  storageKey?: 'amp-sl-meta';
 }
 
-export const Defaults = {
-  FALLBACK_VARIANT: '',
-  INSTANCE_NAME: '$default_instance',
-  METADATA_STORAGE_KEY: 'amp-sl-meta',
-  SERVER_URL: 'https://api.lab.amplitude.com',
+export const Defaults: SkylabConfig = {
+  debug: false,
+  debugEnrollmentRequests: false,
+  fallbackVariant: '',
+  instanceName: '$default_instance',
+  isServerSide: false,
+  preferInitialFlags: false,
+  serverUrl: 'https://api.lab.amplitude.com',
+  storageKey: 'amp-sl-meta',
 };

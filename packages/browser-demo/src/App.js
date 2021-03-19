@@ -14,10 +14,9 @@ Skylab.init('client-IAxMYws9vVQESrrK88aTcToyqMxiiJoR', {
 const Feature = (props) => {
   const { client, ready, loaded } = useSkylab();
 
-  const showFeature = client.getVariant('js-browser-demo');
-  const featurePayload = client.getVariantData('js-browser-demo');
+  const feature = client.getVariant('js-browser-demo');
   console.log(
-    `js-browser-demo: ${showFeature}, payload: ${JSON.stringify(featurePayload)}, ready: ${ready}, loaded: ${loaded}`,
+    `js-browser-demo: ${feature?.value}, payload: ${JSON.stringify(feature?.payload)}, ready: ${ready}, loaded: ${loaded}`,
   );
 
   return (
@@ -25,9 +24,9 @@ const Feature = (props) => {
       <p className="description">
         If you see an image below, the feature flag is enabled
       </p>
-      <p>{`js-browser-demo: ${showFeature}`}</p>
-      <p>{`payload: ${JSON.stringify(featurePayload)}`}</p>
-      {showFeature && (
+      <p>{`js-browser-demo: ${feature?.value}`}</p>
+      <p>{`payload: ${JSON.stringify(feature?.payload)}`}</p>
+      {feature?.value && (
         <footer className="footer">
           <div>
             <img

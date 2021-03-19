@@ -3,7 +3,7 @@
   "version": "0.1.30",
   "description": "Javascript Client SDK for Amplitude Skylab",
   "main": "dist/skylab.umd.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/src/index.d.ts",
   "files": [
     "dist"
   ],

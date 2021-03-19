@@ -3,15 +3,17 @@
  * @module skylab-js-client
  */
 
+import { version as PACKAGE_VERSION } from '../package.json';
+
 import { SkylabConfig, Defaults } from './config';
 import { LocalStorage } from './storage/localStorage';
 import { FetchHttpClient } from './transport/http';
 import { Client } from './types/client';
-import { IdentityProvider } from './types/identity';
+import { ContextProvider } from './types/context';
 import { Storage } from './types/storage';
 import { HttpClient } from './types/transport';
 import { SkylabUser } from './types/user';
-import { Variant } from './types/variant';
+import { Variant, Variants } from './types/variant';
 import { base36Id } from './util/base36Id';
 import { urlSafeBase64Encode } from './util/base64';
 import { normalizeInstanceName } from './util/normalize';
@@ -29,11 +31,9 @@ export class SkylabClient implements Client {
   protected readonly debug: boolean;
   protected readonly debugEnrollmentRequests: boolean;
 
-  protected serverUrl: string;
   protected config: SkylabConfig;
   protected user: SkylabUser;
-  protected initialized: boolean;
-  protected identityProvider: IdentityProvider;
+  protected contextProvider: ContextProvider;
   protected enrollmentId: string;
 
   /**
@@ -42,19 +42,21 @@ export class SkylabClient implements Client {
    * @param config See {@link SkylabConfig} for config options
    */
   public constructor(apiKey: string, config: SkylabConfig) {
-    const normalizedInstanceName = normalizeInstanceName(
-      config?.instanceName || Defaults.INSTANCE_NAME,
-    );
-    this.instanceName = normalizedInstanceName;
     this.apiKey = apiKey;
+    this.config = { ...Defaults, ...config };
+    const normalizedInstanceName = normalizeInstanceName(
+      this.config.instanceName,
+    );
+
+    this.instanceName = normalizedInstanceName;
     this.httpClient = FetchHttpClient;
-    this.config = config;
-    this.serverUrl = config?.serverUrl || Defaults.SERVER_URL;
+
     const shortApiKey = this.apiKey.substring(this.apiKey.length - 6);
     this.storageNamespace = `amp-sl-${shortApiKey}`;
     this.storage = new LocalStorage(this.storageNamespace);
-    this.debug = config?.debug;
-    this.debugEnrollmentRequests = config?.debugEnrollmentRequests;
+
+    this.debug = this.config.debug;
+    this.debugEnrollmentRequests = this.config.debugEnrollmentRequests;
   }
 
   /**
@@ -74,7 +76,7 @@ export class SkylabClient implements Client {
     this.user = user || {};
     this.loadEnrollmentId();
     this.storage.load();
-    if (this.config?.initialFlags && this.config?.preferInitialFlags) {
+    if (this.config.initialFlags && this.config.preferInitialFlags) {
       // initial flags take precedent over local storage until flags are fetched
       for (const [flagKey, value] of Object.entries(this.config.initialFlags)) {
         this.storage.put(flagKey, this._convertVariant(value));
@@ -95,27 +97,27 @@ export class SkylabClient implements Client {
   }
 
   /**
-   * Sets an identity provider that will inject identity information into the user
-   * context. The identity provider will override any device ID or user ID set on
+   * Sets an context provider that will inject identity information into the user
+   * context. The context provider will override any device ID or user ID set on
    * the SkylabUser object.
-   * See {@link IdentityProvider} for more details
-   * @param identityProvider
+   * See {@link ContextProvider} for more details
+   * @param contextProvider
    */
-  public setIdentityProvider(identityProvider: IdentityProvider): SkylabClient {
-    this.identityProvider = identityProvider;
+  public setContextProvider(contextProvider: ContextProvider): SkylabClient {
+    this.contextProvider = contextProvider;
     return this;
   }
 
   private loadEnrollmentId() {
     try {
-      this.enrollmentId = localStorage.getItem(Defaults.METADATA_STORAGE_KEY);
+      this.enrollmentId = localStorage.getItem(this.config.storageKey);
     } catch (e) {
       // pass
     }
     if (!this.enrollmentId) {
       this.enrollmentId = base36Id();
       try {
-        localStorage.setItem(Defaults.METADATA_STORAGE_KEY, this.enrollmentId);
+        localStorage.setItem(this.config.storageKey, this.enrollmentId);
       } catch (e) {
         // pass
       }
@@ -123,20 +125,11 @@ export class SkylabClient implements Client {
   }
 
   protected async fetchAll(): Promise<SkylabClient> {
-    if (this.apiKey === null) {
+    if (!this.apiKey) {
       return this;
     }
     try {
-      const user = this.user;
-      const userContext = {
-        ...user,
-      };
-      if (this.identityProvider?.getDeviceId()) {
-        userContext.device_id = this.identityProvider.getDeviceId();
-      }
-      if (this.identityProvider?.getUserId()) {
-        userContext.user_id = this.identityProvider.getUserId();
-      }
+      const userContext = this.addContext(this.user);
       const encodedContext = urlSafeBase64Encode(JSON.stringify(userContext));
       let queryString = '';
       let debugEnrollmentRequestsParam;
@@ -146,15 +139,18 @@ export class SkylabClient implements Client {
       if (debugEnrollmentRequestsParam) {
         queryString = '?' + debugEnrollmentRequestsParam;
       }
-      const response = await this.httpClient.request(
-        `${this.serverUrl}/sdk/vardata/${encodedContext}${queryString}`,
-        'GET',
-        { Authorization: `Api-Key ${this.apiKey}` },
-      );
+      const endpoint = `${this.config.serverUrl}/sdk/vardata/${encodedContext}${queryString}`;
+      const headers = {
+        Authorization: `Api-Key ${this.apiKey}`,
+      };
+      const response = await this.httpClient.request(endpoint, 'GET', headers);
       const json = await response.json();
       this.storage.clear();
       for (const flag of Object.keys(json)) {
-        this.storage.put(flag, json[flag]);
+        this.storage.put(flag, {
+          value: json[flag].key,
+          payload: json[flag].payload,
+        });
       }
       this.storage.save();
 
@@ -167,70 +163,71 @@ export class SkylabClient implements Client {
     return this;
   }
 
+  private addContext(user: SkylabUser) {
+    return {
+      device_id: this.contextProvider?.getDeviceId() || undefined,
+      user_id: this.contextProvider?.getUserId() || undefined,
+      version: this.contextProvider?.getVersion() || undefined,
+      language: this.contextProvider?.getLanguage() || undefined,
+      platform: this.contextProvider?.getPlatform() || undefined,
+      os: this.contextProvider?.getOs() || undefined,
+      device_model: this.contextProvider?.getDeviceModel() || undefined,
+      library: `skylab-js-client/${PACKAGE_VERSION}`,
+      ...user,
+    };
+  }
+
   /**
    * Returns the variant for the provided flagKey.
    * Fallback order:
    * - Provided fallback
    * - Initial flags
    * - fallbackVariant in config
-   * - Defaults.FALLBACK_VARIANT (empty string)
+   * - Defaults.fallbackVariant (empty string)
    * Fallbacks happen if a value is null or undefined
    * @param flagKey
    * @param fallback A fallback value that takes precedence over any other fallback value.
    */
-  public getVariant(flagKey: string, fallback?: string): string {
-    if (this.apiKey === null) {
-      return null;
+  public getVariant(flagKey: string, fallback?: string | Variant): Variant {
+    if (!this.apiKey) {
+      return { value: undefined };
     }
-    let variant: string = this.storage.get(flagKey)?.key;
-    variant =
-      variant ??
-      fallback ??
-      this._convertVariant(this.config?.initialFlags?.[flagKey])?.key ??
-      this.config?.fallbackVariant ??
-      Defaults.FALLBACK_VARIANT;
+    const variant = this._convertVariant(
+      this.storage.get(flagKey) ??
+        fallback ??
+        this.config.initialFlags?.[flagKey] ??
+        this.config.fallbackVariant,
+    );
 
     if (this.debug) {
-      console.debug(`[Skylab] variant for flag ${flagKey} is ${variant}`);
+      console.debug(`[Skylab] variant for flag ${flagKey} is ${variant.value}`);
     }
 
     return variant;
   }
 
-  public getVariantData(flagKey: string, fallback: any): any {
-    if (this.apiKey === null) {
-      return null;
-    }
-    let data: any = this.storage.get(flagKey)?.payload;
-    data =
-      data ??
-      fallback ??
-      this._convertVariant(this.config?.initialFlags?.[flagKey])?.payload;
-
-    if (this.debug) {
-      console.debug(`[Skylab] variant data for flag ${flagKey} is ${data}`);
-    }
-
-    return data;
-  }
-
   /**
    * Returns all variants for the user
    */
-  public getAllVariants(): Record<string, Variant> {
-    if (this.apiKey === null) {
-      return null;
+  public getVariants(): Variants {
+    if (!this.apiKey) {
+      return {};
     }
     return this.storage.getAll();
   }
 
-  public _convertVariant(value: string | Variant): Variant | null {
+  /**
+   * Converts a string value or Variant to a Variant object
+   * @param value
+   * @returns
+   */
+  private _convertVariant(value: string | Variant): Variant | null {
     if (value === null || value === undefined) {
       return null;
     }
     if (typeof value == 'string') {
       return {
-        key: value,
+        value: value,
       };
     } else {
       return value;

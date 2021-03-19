@@ -7,7 +7,10 @@
  * @preferred
  */
 
-export { AmplitudeIdentityProvider } from './identity/amplitudeIdentityProvider';
+export { SkylabConfig } from './config';
+export { AmplitudeContextProvider } from './context/amplitudeContextProvider';
 export { Skylab } from './factory';
 export { StubSkylabClient } from './stubClient';
 export { SkylabClient } from './skylabClient';
+export { SkylabUser } from './types/user';
+export { Variant, Variants } from './types/variant';

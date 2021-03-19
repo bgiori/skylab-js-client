@@ -5,6 +5,7 @@
     "noEmitOnError": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "target": "es5",
     "noEmit": true,
     "rootDir": ".",

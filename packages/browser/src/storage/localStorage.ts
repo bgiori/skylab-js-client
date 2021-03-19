@@ -4,7 +4,7 @@
  */
 
 import { Storage } from '../types/storage';
-import { Variant } from '../types/variant';
+import { Variant, Variants } from '../types/variant';
 
 export class LocalStorage implements Storage {
   protected readonly namespace: string;
@@ -30,7 +30,7 @@ export class LocalStorage implements Storage {
     this.map = {};
   }
 
-  getAll(): Record<string, Variant> {
+  getAll(): Variants {
     return this.map;
   }
 
@@ -41,11 +41,11 @@ export class LocalStorage implements Storage {
       for (const [key, value] of Object.entries(map)) {
         if (typeof value === 'string') {
           // old format
-          newMap[key] = { key: value };
+          newMap[key] = { value: value };
         } else if (typeof value === 'object') {
           // new format
           newMap[key] = {
-            key: value['key'],
+            value: value['value'],
             payload: value['payload'],
           };
         }

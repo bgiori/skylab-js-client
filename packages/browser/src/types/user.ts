@@ -1,11 +1,11 @@
 /**
- * A SkylabUser object represents an individual end user, and is passed
- * to the server for variation assignment (enrollment).
- * @packageDocumentation
- * @module skylab-js-client
+ * Defines a user context for evaluation.
+ * `device_id` and `user_id` are used for identity resolution.
+ * All other predefined fields and user properties are used for
+ * rule based user targeting.
+ * @category Types
  */
-
-export interface SkylabUser {
+export type SkylabUser = {
   /**
    * Device ID for associating with an identity in Amplitude
    */
@@ -17,50 +17,72 @@ export interface SkylabUser {
   user_id?: string;
 
   /**
-   * Predefined field, must be manually provided
-   */
-  device_family?: string;
-
-  /**
-   * Predefined field, must be manually provided
-   */
-  device_type?: string;
-
-  /**
-   * Predefined field, must be manually provided
+   * Predefined field, can be manually provided
    */
   country?: string;
 
   /**
-   * Predefined field, must be manually provided
+   * Predefined field, can be manually provided
    */
   city?: string;
 
   /**
-   * Predefined field, must be manually provided
+   * Predefined field, can be manually provided
    */
   region?: string;
 
   /**
-   * Predefined field, must be manually provided
+   * Predefined field, auto populated via Amplitude Identity Provider
+   * or can be manually provided
    */
   language?: string;
 
   /**
-   * Predefined field, must be manually provided
+   * Predefined field, auto populated via Amplitude Identity Provider
+   * or can be manually provided
    */
   platform?: string;
 
   /**
-   * Predefined field, must be manually provided
+   * Predefined field, auto populated via Ampliitude Identity Provider
+   * or can be manually provided
    */
-  version?: string;
+  os?: string;
 
   /**
-   * Custom user properties, used for rule base targeting
+   * Predefined field, can be manually provided
    */
-  user_properties?: Record<
-    string,
-    string | number | boolean | Array<string | number | boolean>
-  >;
-}
+  device_family?: string;
+
+  /**
+   * Predefined field, can be manually provided
+   */
+  device_type?: string;
+
+  /**
+   * Predefined field, auto populated via Ampliitude Identity Provider
+   * or can be manually provided
+   */
+  device_model?: string;
+
+  /**
+   * Predefined field, can be manually provided
+   */
+  carrier?: string;
+
+  /**
+   * Predefined field, auto populated, can be manually overridden
+   */
+  library?: string;
+
+  /**
+   * Custom user properties
+   */
+  user_properties?: {
+    [propertyName: string]:
+      | string
+      | number
+      | boolean
+      | Array<string | number | boolean>;
+  };
+};
