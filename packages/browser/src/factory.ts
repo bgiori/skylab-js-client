@@ -26,7 +26,7 @@ const init = (apiKey: string, config?: SkylabConfig): SkylabClient => {
  * @param name The instance name. Omit to get the default instance. Instance names are case
  * _insensitive_.
  */
-const getInstance = (name: string = Defaults.instanceName): SkylabClient => {
+const instance = (name: string = Defaults.instanceName): SkylabClient => {
   const normalizedName = normalizeInstanceName(name) || Defaults.instanceName;
   return instances[normalizedName];
 };
@@ -37,5 +37,5 @@ const getInstance = (name: string = Defaults.instanceName): SkylabClient => {
  */
 export const Skylab = {
   init,
-  getInstance,
+  instance,
 };

@@ -18,7 +18,7 @@ export const SkylabProvider = (props) => {
   const [loaded, setLoaded] = useState(false);
 
   const startSkylab = useCallback(async () => {
-    Skylab.getInstance(instanceName)
+    Skylab.instance(instanceName)
       .start(skylabUser)
       .then(() => {
         setLoaded(true);
@@ -35,7 +35,7 @@ export const SkylabProvider = (props) => {
     ready && (
       <SkylabContext.Provider
         value={{
-          client: Skylab.getInstance(instanceName),
+          client: Skylab.instance(instanceName),
           ready: ready,
           loaded: loaded,
         }}
