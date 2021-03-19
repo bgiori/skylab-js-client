@@ -1,10 +1,8 @@
-/**
- * @packageDocumentation
- * @module skylab-js-client
- */
-
 import { Variant } from './types/variant';
 
+/**
+ * @category Configuration
+ */
 export interface SkylabConfig {
   /**
    * Set to true to log some extra information to the console.
@@ -54,6 +52,23 @@ export interface SkylabConfig {
   storageKey?: 'amp-sl-meta';
 }
 
+/**
+ Defaults for Skylab Config options
+
+ | **Option**       | **Default**                       |
+ |------------------|-----------------------------------|
+ | **debug**        | false                             |
+ | **debugEnrollmentRequests** | false                  |
+ | **fallbackVariant**         | ""                     |
+ | **instanceName** | `"$default_instance"`             |
+ | **isServerSide**            | false                  |
+ | **preferInitialFlags**      | false                  |
+ | **serverUrl**    | `"https://api.lab.amplitude.com"` |
+ | **storageKey**    | `"amp-sl-meta"` |
+
+ *
+ * @category Configuration
+ */
 export const Defaults: SkylabConfig = {
   debug: false,
   debugEnrollmentRequests: false,

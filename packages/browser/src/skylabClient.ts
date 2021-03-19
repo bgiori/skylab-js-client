@@ -21,6 +21,7 @@ import { randomString } from './util/randomstring';
 
 /**
  * The default {@link Client} used to fetch variations from Skylab's servers.
+ * @category Core Usage
  */
 export class SkylabClient implements Client {
   protected readonly instanceName: string;

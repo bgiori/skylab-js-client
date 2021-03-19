@@ -32,19 +32,19 @@ export type SkylabUser = {
   region?: string;
 
   /**
-   * Predefined field, auto populated via Amplitude Identity Provider
+   * Predefined field, auto populated via a ContextProvider
    * or can be manually provided
    */
   language?: string;
 
   /**
-   * Predefined field, auto populated via Amplitude Identity Provider
+   * Predefined field, auto populated via a ContextProvider
    * or can be manually provided
    */
   platform?: string;
 
   /**
-   * Predefined field, auto populated via Ampliitude Identity Provider
+   * Predefined field, auto populated via a ContextProvider
    * or can be manually provided
    */
   os?: string;
@@ -60,7 +60,7 @@ export type SkylabUser = {
   device_type?: string;
 
   /**
-   * Predefined field, auto populated via Ampliitude Identity Provider
+   * Predefined field, auto populated via a ContextProvider
    * or can be manually provided
    */
   device_model?: string;

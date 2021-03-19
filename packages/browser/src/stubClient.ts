@@ -1,8 +1,3 @@
-/**
- * @packageDocumentation
- * @module skylab-js-client
- */
-
 import { Defaults } from './config';
 import { Client } from './types/client';
 import { ContextProvider } from './types/context';

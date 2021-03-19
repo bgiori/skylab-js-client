@@ -1,8 +1,3 @@
-/**
- * @packageDocumentation
- * @module skylab-js-client
- */
-
 import { ContextProvider } from '../types/context';
 
 type AmplitudeInstance = {
@@ -28,6 +23,11 @@ type AmplitudeUAParser = {
   };
 };
 
+/**
+ * An AmplitudeContextProvider injects information from the Amplitude SDK into
+ * the {@link SkylabUser} object before sending a request to the server.
+ * @category Context Provider
+ */
 export class AmplitudeContextProvider implements ContextProvider {
   private amplitudeInstance: AmplitudeInstance;
   constructor(amplitudeInstance: AmplitudeInstance) {

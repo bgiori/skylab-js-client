@@ -1,8 +1,3 @@
-/**
- * @packageDocumentation
- * @internal
- */
-
 export interface HttpClient {
   request(
     requestUrl: string,

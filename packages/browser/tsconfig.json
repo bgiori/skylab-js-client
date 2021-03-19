@@ -3,18 +3,21 @@
   "include": ["**/*.ts"],
   "typedocOptions": {
     "name": "Skylab JS Client Documentation",
-    "mode": "modules",
-    "entryPoint": "skylab-js-client",
-    "excludeNotExported": true,
+    "entryPoints": [
+      "./src/index.ts",
+    ],
+    "categoryOrder": [
+      "Core Usage", "Configuration", "Context Provider", "Types"
+    ],
+    "categorizeByGroup": false,
+    "disableSources": true,
     "excludePrivate": true,
     "excludeProtected": true,
-    "includeVersion": true,
-    "readme": "none",
-    "stripInternal": true,
+    "excludeInternal": true,
     "hideGenerator": true,
+    "includeVersion": true,
     "out": "../../docs",
-    "includes": [
-      "./src"
-    ]
+    "readme": "none",
+    "theme": "minimal"
   }
 }

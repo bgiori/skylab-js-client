@@ -1,12 +1,11 @@
-/**
- * @packageDocumentation
- * @module skylab-js-client
- */
-
 import { ContextProvider } from './context';
 import { SkylabUser } from './user';
 import { Variant, Variants } from './variant';
 
+/**
+ * Interface for the main client.
+ * @category Core Usage
+ */
 export interface Client {
   start(user: SkylabUser): Promise<Client>;
   setUser(user: SkylabUser): Promise<Client>;

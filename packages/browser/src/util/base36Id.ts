@@ -1,8 +1,3 @@
-/**
- * @packageDocumentation
- * @internal
- */
-
 import { randomString } from './randomstring';
 
 const base36Chars = 'abcdefghijklmnopqrstuvwxyz0123456789';

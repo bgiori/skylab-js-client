@@ -1,8 +1,3 @@
-/**
- * @packageDocumentation
- * @internal
- */
-
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 export const randomString = (
