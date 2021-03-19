@@ -1,6 +1,6 @@
 import * as base64 from 'base64-js';
 
-const stringToUtf8Array = (s: string): Array<number> => {
+export const stringToUtf8Array = (s: string): Array<number> => {
   const utf8 = unescape(encodeURIComponent(s));
   const arr = [];
   for (let i = 0; i < utf8.length; i++) {
