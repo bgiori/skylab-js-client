@@ -32,6 +32,11 @@ export type SkylabUser = {
   region?: string;
 
   /**
+   * Predefined field, can be manually provided
+   */
+  dma?: string;
+
+  /**
    * Predefined field, auto populated via a ContextProvider
    * or can be manually provided
    */
