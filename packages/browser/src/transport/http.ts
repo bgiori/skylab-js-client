@@ -7,7 +7,7 @@ import unfetch from 'unfetch';
 
 import { HttpClient } from '../types/transport';
 
-const fetch = global.fetch || unfetch;
+const fetch = globalThis.fetch || unfetch;
 
 const request: HttpClient['request'] = (
   requestUrl: string,
