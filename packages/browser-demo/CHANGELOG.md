@@ -8,4 +8,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove separate docs step ([557d371](https://github.com/amplitude/skylab-js-client/commit/557d3714f0c670d8c5e6a63fa947483079f4d781))
+* remove separate docs step ([557d371](https://github.com/bgiori/skylab-js-client/commit/557d3714f0c670d8c5e6a63fa947483079f4d781))
