@@ -62,7 +62,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          git checkout $GITHUB_REF
           yarn lerna version -m "chore(release): publish %s" \
             --conventional-commits \
             --no-push \
@@ -75,7 +74,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          git checkout $GITHUB_REF
           yarn lerna version -m "chore(release): publish %s" \
             --conventional-commits \
             --create-release github \
