@@ -46,11 +46,6 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Generate Docs
-        run: |
-          cd packages/browser
-          yarn docs
-
       - name: Configure Git User
         run: |
           git config --global user.name amplitude-sdk-bot
